@@ -1,39 +1,3 @@
-resource "kubernetes_namespace" "jenkins" {
-  metadata {
-    annotations = {}
-    labels = {}
-    name = "jenkins"
-  }
-}
-resource "kubernetes_namespace" "keycloak" {
-  metadata {
-    annotations = {}
-    labels = {}
-    name = "keycloak"
-  }
-}
-resource "kubernetes_namespace" "istio-system" {
-  metadata {
-    annotations = {}
-    labels = {}
-    name = "istio-system"
-  }
-}
-resource "kubernetes_namespace" "transactions" {
-  metadata {
-    annotations = {}
-    labels = {}
-    name = "transactions"
-  }
-}
-resource "kubernetes_namespace" "authentication" {
-  metadata {
-    annotations = {}
-    labels = {}
-    name = "authentication"
-  }
-}
-
 resource "helm_release" "jenkins" {
   name          = "jenkins"
   namespace     = "jenkins" 
@@ -45,17 +9,56 @@ resource "helm_release" "jenkins" {
   force_update  = true
 
   values        = [templatefile("templates/jenkins-values.tpl.yaml", {
-    serviceType          = "LoadBalancer"
-    prometheusEnabled    = "false"
-    mavenAgentTag        = "jdk11"
-    chart-admin-username = "admin"
-    chart-admin-password = "password"
-    computer_jnlpmac     = "jenkins-agent"
-    computer_name        = "jenkins-agent"
+    serviceType             = "LoadBalancer"
+    prometheusEnabled       = "false"
+    mavenAgentTag           = "jdk11"
+    chart-admin-username    = "admin"
+    chart-admin-password    = "password"
+    computer_jnlpmac        = "jenkins-agent"
+    computer_name           = "jenkins-agent"
+    agent_idle_minutes      = "15"
+    persistent_volume_claim = kubernetes_persistent_volume_claim.jenkins_workspace
   })]
+
+  depends_on             = [kubernetes_persistent_volume_claim.jenkins_workspace]
 
 }
 
+
+# Create an Nginx pod
+resource "kubernetes_pod" "nginx" {
+  metadata {
+    name = "terraform-example"
+  }
+
+  spec {
+    container {
+      image = "nginx:1.15.3"
+      name  = "example"
+    }
+  }
+}
+
+# Create an service
+#resource "kubernetes_service" "nginx" {
+#  metadata {
+#    name = "terraform-example"
+#  }
+#  spec {
+#    selector {
+#      run = "${kubernetes_pod.nginx.metadata.0.labels.run}"
+#    }
+#    port {
+#      port = 80
+#    }
+
+#    type = "NodePort"
+#  }
+#}
+
+
+
+/*
 resource "helm_release" "istio" {
   name          = "jenkins"
   namespace     = "istio-system" 
@@ -73,7 +76,7 @@ resource "helm_release" "istio" {
     chart-admin-username = "admin"
     chart-admin-password = "password"
     computer_jnlpmac     = "jenkins-agent"
-    computer_name        = "jenkins-agent"
   })]
 
 }
+*/
