@@ -9,15 +9,25 @@ resource "helm_release" "postgresql" {
   force_update  = true
 
   values        = [templatefile("templates/postgresql-values.tpl.yaml", {
-    serviceType             = "LoadBalancer"
-    prometheusEnabled       = "false"
-    mavenAgentTag           = "jdk11"
-    chart-admin-username    = "admin"
-    chart-admin-password    = "password"
-    computer_jnlpmac        = "jenkins-agent"
-    computer_name           = "jenkins-agent"
-    agent_idle_minutes      = "15"
-//    persistent_volume_claim = kubernetes_persistent_volume_claim.jenkins_workspace
+    postgres_username       = "postgres"
+    postgres_password       = "password"
   })]
 
 }
+
+resource "helm_release" "pgadmin" {
+  name          = "pgadmin"
+  namespace     = "postgresql" 
+  chart         = "pgadmin4"
+  repository    = "https://helm.runix.net/"
+  version       = "1.4.6"
+  reuse_values  = false
+  recreate_pods = true
+  force_update  = true
+
+  values        = [templatefile("templates/pgadmin-values.tpl.yaml", {
+    postgres_host = "postgresql.postgresql.svc.cluster.local",
+  })]
+
+}
+

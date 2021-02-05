@@ -159,7 +159,7 @@ controller:
   # Note if you set this to 'LoadBalancer', you *must* define annotations to secure it. By default
   # this will be an external load balancer and allowing inbound 0.0.0.0/0, a HUGE
   # security risk:  https://github.com/kubernetes/charts/issues/1341
-  agentListenerServiceType: "ClusterIP"
+  agentListenerServiceType: "LoadBalancer"
   # Optionally assign an IP to the LoadBalancer agentListenerService LoadBalancer
   # GKE users: only regional static IPs will work for Service Load balancer.
   agentListenerLoadBalancerIP:
@@ -242,13 +242,28 @@ controller:
         allowsSignup: false
         enableCaptcha: false
         users:
-        - id: "${chart-admin-username}"
+        - id: "${chart_admin_username}"
           name: "Jenkins Admin"
-          password: "${chart-admin-password}"
+          password: "${chart_admin_password}"
     # Ignored if authorizationStrategy is defined in controller.JCasC.configScripts
     authorizationStrategy: |-
       loggedInUsersCanDoAnything:
         allowAnonymousRead: false
+
+    credentials: |-
+      credentials:
+        system:
+          domainCredentials:
+            - credentials:
+                - basicSSHUserPrivateKey:
+                    scope: GLOBAL
+                    id: ssh_with_passphrase_provided
+                    username: ssh_root
+                    privateKeySource:
+                      directEntry:
+                        privateKey: "${ssh_private_key}"
+                    description: "SSH passphrase with private key file. Private key provided"
+                        
   # Optionally specify additional init-containers
   customInitContainers: []
   # - name: custom-init
@@ -647,7 +662,7 @@ additionalAgents: {}
 
 persistence:
   enabled: true
-  ## A manually managed Persistent Volume and Claim
+  ## A manually managed Persistent; Volume and Claim
   ## Requires persistence.enabled: true
   ## If defined, PVC must be created manually before volume will be bound
   existingClaim:

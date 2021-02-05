@@ -3,7 +3,9 @@
 ## Current available global Docker image parameters: imageRegistry and imagePullSecrets
 ##
 global:
-  postgresql: {}
+  postgresql: 
+    postgresqlPassword: "${postgres_password}"
+    postgresqlUsername: "${postgres_username}"
 #   imageRegistry: myRegistryName
 #   imagePullSecrets:
 #     - myRegistryKeySecretName
@@ -131,7 +133,7 @@ replication:
 
 ## PostgreSQL admin password (used when `postgresqlUsername` is not `postgres`)
 ## ref: https://github.com/bitnami/bitnami-docker-postgresql/blob/master/README.md#creating-a-database-user-on-first-run (see note!)
-# postgresqlPostgresPassword:
+postgresqlPostgresPassword: 
 
 ## PostgreSQL user (has superuser privileges if username is `postgres`)
 ## ref: https://github.com/bitnami/bitnami-docker-postgresql/blob/master/README.md#setting-the-root-password-on-first-run
@@ -141,7 +143,7 @@ postgresqlUsername: postgres
 ## PostgreSQL password
 ## ref: https://github.com/bitnami/bitnami-docker-postgresql/blob/master/README.md#setting-the-root-password-on-first-run
 ##
-# postgresqlPassword:
+postgresqlPassword: "${postgres_password}"
 
 ## PostgreSQL password using existing secret
 ## existingSecret: secret
