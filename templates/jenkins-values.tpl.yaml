@@ -723,7 +723,7 @@ agent:
   # controller.JCasC.defaultConfig: true
   # Best reference is https://<jenkins_url>/configuration-as-code/reference#Cloud-kubernetes. The example below creates a python pod template.
   podTemplates: 
-    maven: |
+    maven: |-
       - name: maven
         label: jenkins-maven
         serviceAccount: jenkins
@@ -738,13 +738,13 @@ agent:
             resourceRequestMemory: "512Mi"
             resourceLimitCpu: "1"
             resourceLimitMemory: "1024Mi"
-    terraform: |
-      - name: maven
+    terraform: |-
+      - name: terraform
         label: jenkins-terraform
         serviceAccount: jenkins
         containers:
           - name: terraform
-            image: jenkins/jnlp-agent-terraform:${terraformAgentTag}
+            image:  mariusv/terraform-jnlp-slave:${terraformAgentTag}
             command: "/bin/sh -c"
             args: "cat"
             ttyEnabled: true
@@ -777,12 +777,11 @@ additionalAgents:
 #    customJenkinsLabels: terraform
 #    image: jenkins/jnlp-agent-terraform
 #    tag: ${terraformAgentTag}
-
-#  maven: |-
+#  maven:
 #    podName: maven
 #    customJenkinsLabels: maven
 #    image: jenkins/jnlp-agent-maven
-#    tag: ${mavenAgentTag}
+#    tag: ${mavenAgentTag} 
 #    resources:
 #      limits:
 #        cpu: "1"
@@ -792,7 +791,7 @@ additionalAgents:
 #        claimName: jenkins-agent-maven
 #        mountPath: /home/jenkins
 #        readOnly: false
-
+ 
 
 #    podName: maven
 #    customJenkinsLabels: maven
