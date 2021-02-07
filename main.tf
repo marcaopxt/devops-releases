@@ -15,7 +15,7 @@ resource "helm_release" "jenkins" {
     #################################################################
     ###################### PLEASE FIX ASAP ##############################
     ###############################################################
-    terraformAgentTag       = "latest"
+    terraformAgentTag       = "0.11.5"
     
     chart_admin_username    = "admin"
     chart_admin_password    = "password"
@@ -25,7 +25,7 @@ resource "helm_release" "jenkins" {
 #    persistent_volume_claim = kubernetes_persistent_volume_claim.jenkins
     ssh_private_key         = base64encode(file("/home/mpeixoto/.ssh/id_rsa"))
     ssh_key_password        = ""
-    jenkins_token           = "0773eca8fca33e3c71f3a0d8a35eb762f3c17b8d"
+    jenkins_token           = "0773eca8fca33e3c71f3a0d8a35eb762f3c17b8d" 
   })]
 
 #  depends_on             = [kubernetes_persistent_volume_claim.jenkins]
