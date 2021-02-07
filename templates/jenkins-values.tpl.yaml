@@ -207,6 +207,7 @@ controller:
     - job-dsl:1.77
 #    - matrix-auth:2.4.2
     - pipeline-maven:3.9.3
+    - semantic-versioning-plugin:1.13    
 #    - pipeline-milestone-step:1.3.1    
 #    - role-strategy:2.10    
 #    - sonar:2.13
@@ -729,7 +730,7 @@ agent:
         serviceAccount: jenkins
         containers:
           - name: maven
-            image: jenkins/jnlp-agent-maven:${mavenAgentTag}
+            image: mapx/jnlp-maven-agent-jdk11:${mavenAgentTag}
             command: "/bin/sh -c"
             args: "cat"
             ttyEnabled: true
