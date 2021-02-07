@@ -1,5 +1,8 @@
 pipeline {
-    agent any
+    agent 
+    agent {
+      label "jenkins-maven"
+    }
     options { 
         timestamps () 
     }
@@ -14,7 +17,6 @@ pipeline {
         TF_IN_AUTOMATION      = '1'
     }
     stages {
-      container('terraform') {        
         stage('Plan') {
             steps {
                 script {
@@ -49,7 +51,6 @@ pipeline {
 
             }
         }
-      }
     }
 
     post {
