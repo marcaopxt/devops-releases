@@ -2,10 +2,10 @@ pipeline {
     agent {
       label "jenkins-terraform"
     }
-    options { 
+//    options { 
 //        timestamps()
 //        ansiColor("xterm")
-    }
+//    }
     parameters {
         string(name: 'environment', defaultValue: 'default', description: 'Workspace/environment file to use for deployment')
         string(name: 'version', defaultValue: '0.14.5', description: 'Version variable to pass to Terraform')
