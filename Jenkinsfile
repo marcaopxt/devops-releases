@@ -4,7 +4,7 @@ pipeline {
     }
     options { 
 //        timestamps()
-        ansiColor("xterm")
+//        ansiColor("xterm")
     }
     parameters {
         string(name: 'environment', defaultValue: 'default', description: 'Workspace/environment file to use for deployment')
