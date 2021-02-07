@@ -1,9 +1,9 @@
 pipeline {
     agent {
-      label "jenkins-maven"
+      label "jenkins-terraform"
     }
     options { 
-        timestamps()
+//        timestamps()
         ansiColor("xterm")
     }
     parameters {

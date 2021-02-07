@@ -740,7 +740,7 @@ agent:
             resourceLimitMemory: "1024Mi"
     terraform: |
       - name: maven
-        label: jenkins-maven
+        label: jenkins-terraform
         serviceAccount: jenkins
         containers:
           - name: maven
