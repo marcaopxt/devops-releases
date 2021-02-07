@@ -3,7 +3,8 @@ pipeline {
       label "jenkins-maven"
     }
     options { 
-        timestamps () 
+        timestamps()
+        ansiColor("xterm")
     }
     parameters {
         string(name: 'environment', defaultValue: 'default', description: 'Workspace/environment file to use for deployment')
