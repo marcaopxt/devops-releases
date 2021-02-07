@@ -1,18 +1,18 @@
   pipeline {
     agent {
       node {
-        label "master"
+        label "maven"
       } 
     }
 
     stages {
-      stage('fetch') {
+      stage('Fetch Code') {
         steps {
           git url: 'https://github.com/PrashantBhatasana/terraform-jenkins-ec2' 
         }
       }
 
-      stage('Terraform init') {
+      stage('Terraform init/plan') {
         steps {
           sh 'terraform init'
           sh 'terraform plan'
