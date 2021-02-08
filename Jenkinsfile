@@ -26,21 +26,6 @@ pipeline {
                 script {
                     currentBuild.displayName = params.version
                 }
-                wrappers {
-                    terraformBuildWrapper {
-                        variables("")
-                        terraformInstallation("terraform-default")
-                        doGetUpdate(true)
-                        doNotApply(true)
-                        doDestroy(false)
-                        config {
-                            value("inline")
-                            inlineConfig("")
-                            fileConfig("")
-                        }
-                    }
-                }
-                
                 sh 'terraform init -input=false'
                 sh 'terraform workspace select ${environment}'
                 sh "terraform plan -input=false -out tfplan -var 'version=${params.version}' --var-file=environments/${params.environment}.tfvars"
