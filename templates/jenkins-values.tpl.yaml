@@ -340,24 +340,15 @@ controller:
                     - maven:
                         id: "3.5.4"
                           
-          jdk:
-            installations:
-            - name: "jdk-11"
-              properties:
-              - installSource:
-                  installers:
-                    - maven:
-                        id: "3.5.4"
-
           nodejs:
             installations:
             - name: "nodejs-6.9.4"
               properties:
               - installSource:
-                installers:
-                - nodeJSInstaller:
-                  id: "6.9.4"
-                  npmPackagesRefreshHours: 72
+                  installers:
+                    - nodeJSInstaller:
+                        id: "6.9.4"
+                        npmPackagesRefreshHours: 72
 
           sonarRunnerInstallation:
             installations:
@@ -365,8 +356,17 @@ controller:
               properties:
               - installSource:
                   installers:
-                  - sonarRunnerInstaller:
-                      id: "3.3.0.1492"                  
+                    - sonarRunnerInstaller:
+                        id: "3.3.0.1492"                  
+
+#          jdk:
+#            installations:
+#            - name: "jdk-11"
+#              properties:
+#              - installSource:
+#                  installers:
+#                    - jdkInstaller:
+#                        id: "3.5.4"
 
       jobs-configuration: |-
         jobs:
