@@ -729,7 +729,7 @@ agent:
         label: jenkins-maven
         serviceAccount: jenkins
         containers:
-          - name: maven
+          - name: jenkins-maven
             image: mapx/jnlp-maven-agent-jdk11:${mavenAgentTag}
             command: "/bin/sh -c"
             args: "cat"
@@ -745,7 +745,7 @@ agent:
         serviceAccount: jenkins
         containers:
           - name: terraform
-            image:  mariusv/terraform-jnlp-slave:${terraformAgentTag}
+            image:  mapx/jnlp-agent-terraform:${terraformAgentTag}
             command: "/bin/sh -c"
             args: "cat"
             ttyEnabled: true
