@@ -23,8 +23,6 @@ resource "helm_release" "jenkins" {
     computer_name           = "jenkins-agent"
     agent_idle_minutes      = "15"
 #    persistent_volume_claim = kubernetes_persistent_volume_claim.jenkins
-    ssh_private_key         = base64encode(file("/home/mpeixoto/.ssh/id_rsa"))
-    ssh_key_password        = ""
     jenkins_token           = "0773eca8fca33e3c71f3a0d8a35eb762f3c17b8d" 
   })]
 
