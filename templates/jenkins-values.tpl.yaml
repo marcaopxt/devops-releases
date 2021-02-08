@@ -359,14 +359,14 @@ controller:
                     - sonarRunnerInstaller:
                         id: "3.3.0.1492"                  
 
-#          jdk:
-#            installations:
-#            - name: "jdk-11"
-#              properties:
-#              - installSource:
-#                  installers:
-#                    - jdkInstaller:
-#                        id: "3.5.4"
+          jdk:
+            installations:
+            - name: "jdk-11"
+              properties:
+              - installSource:
+                  installers:
+                    - jdkInstaller:
+                        id: "java-11-openjdk"
 
       jobs-configuration: |-
         jobs:
