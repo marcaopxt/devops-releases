@@ -12,6 +12,9 @@ pipeline {
 //        timestamps()
 //        ansiColor("xterm")
 //    }
+    tools {
+        terraform 'terraform-default'
+    }
     parameters {
         string(name: 'environment', defaultValue: 'default', description: 'Workspace/environment file to use for deployment')
         string(name: 'version', defaultValue: '0.14.5', description: 'Version variable to pass to Terraform')
@@ -23,12 +26,12 @@ pipeline {
                 script {
                     currentBuild.displayName = params.version
                 }
-/*                wrappers {
+                wrappers {
                     terraformBuildWrapper {
                         variables("")
-                        terraformInstallation("terraform")
+                        terraformInstallation("terraform-default")
                         doGetUpdate(true)
-                        doNotApply(false)
+                        doNotApply(true)
                         doDestroy(false)
                         config {
                             value("inline")
@@ -37,7 +40,7 @@ pipeline {
                         }
                     }
                 }
-*/                
+                
                 sh 'terraform init -input=false'
                 sh 'terraform workspace select ${environment}'
                 sh "terraform plan -input=false -out tfplan -var 'version=${params.version}' --var-file=environments/${params.environment}.tfvars"
