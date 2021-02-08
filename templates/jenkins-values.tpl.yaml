@@ -790,7 +790,7 @@ agent:
         yamlMergeStrategy: override
         containers:
           - name: jenkins-maven
-            image: mapx/jnlp-maven-agent-jdk11:${mavenAgentTag}
+            image: mapx/jnlp-agent-maven:${mavenAgentTag}
             command: "/bin/sh -c"
             args: "cat"
             ttyEnabled: true
