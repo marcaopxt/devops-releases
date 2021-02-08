@@ -12,9 +12,9 @@ pipeline {
 //        timestamps()
 //        ansiColor("xterm")
 //    }
-    tools {
-        terraform 'terraform-default'
-    }
+//    tools {
+//        terraform 'terraform-default'
+//    }
     parameters {
 //        string(name: 'environment', defaultValue: 'default', description: 'Workspace/environment file to use for deployment')
 //        string(name: 'version', defaultValue: '0.14.5', description: 'Version variable to pass to Terraform')
@@ -22,16 +22,18 @@ pipeline {
     }
     stages {
         stage('Plan') {
-            steps {
-//                script {
-//                    currentBuild.displayName = params.version
-                    sh 'terraform init -input=false  -no-color'
-//                    sh 'terraform workspace select ${environment}'
-                    sh "terraform plan -input=false  -no-color"
-                    //-out tfplan -var 'version=${params.version}' --var-file=environments/${params.environment}.tfvars"
-                    sh 'terraform show -no-color'
-                    // tfplan > tfplan.txt'
-//                }
+            container('jenkins-terraform') {
+                steps {
+    //                script {
+    //                    currentBuild.displayName = params.version
+                        sh 'terraform init -input=false  -no-color'
+    //                    sh 'terraform workspace select ${environment}'
+                        sh "terraform plan -input=false  -no-color"
+                        //-out tfplan -var 'version=${params.version}' --var-file=environments/${params.environment}.tfvars"
+                        sh 'terraform show -no-color'
+                        // tfplan > tfplan.txt'
+    //                }
+                }
             }
         }
         stage('Approval') {
@@ -51,10 +53,12 @@ pipeline {
         }
 
         stage('Apply') {
-            steps {
-                sh "terraform apply --dry-run -input=false"
-                // tfplan"
+            container('jenkins-terraform') {
+                steps {
+                    sh "terraform apply --dry-run -input=false"
+                    // tfplan"
 
+                }
             }
         }
     }
