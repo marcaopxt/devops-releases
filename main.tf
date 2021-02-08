@@ -15,7 +15,7 @@ resource "helm_release" "jenkins" {
     #################################################################
     ###################### PLEASE FIX ASAP ##############################
     ###############################################################
-    terraformAgentTag       = "0.11.5"
+    terraformAgentTag       = "0.0.1"
     
     chart_admin_username    = "admin"
     chart_admin_password    = "password"

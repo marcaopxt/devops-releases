@@ -744,7 +744,7 @@ agent:
         label: jenkins-terraform
         serviceAccount: jenkins
         containers:
-          - name: terraform
+          - name: jenkins-terraform
             image:  mapx/jnlp-agent-terraform:${terraformAgentTag}
             command: "/bin/sh -c"
             args: "cat"
