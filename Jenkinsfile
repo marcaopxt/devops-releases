@@ -31,6 +31,7 @@ pipeline {
                     //-out tfplan -var 'version=${params.version}' --var-file=environments/${params.environment}.tfvars"
                     sh 'terraform show -no-color'
                     // tfplan > tfplan.txt'
+                }
             }
         }
         stage('Approval') {
