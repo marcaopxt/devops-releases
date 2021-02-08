@@ -325,7 +325,6 @@ controller:
           terraform:
             installations:
               - name: "terraform-default"
-                home: "/terraform-0.14"
                 properties:
                   - installSource:
                       installers:
