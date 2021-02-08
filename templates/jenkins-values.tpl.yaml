@@ -360,7 +360,7 @@ controller:
 
           jdk:
             installations:
-            - name: "jdk-11"
+            - name: "jdk11"
               properties:
               - installSource:
                   installers:
