@@ -210,6 +210,8 @@ controller:
     - pipeline-maven:3.9.3
     - semantic-versioning-plugin:1.13    
     - terraform:1.0.10    
+    - nodejs:1.3.11
+    - sonar:2.13
 #    - pipeline-milestone-step:1.3.1    
 #    - role-strategy:2.10    
 #    - sonar:2.13
@@ -322,7 +324,7 @@ controller:
         tool:
           terraform:
             installations:
-              - name: "terraform"
+              - name: "terraform-default"
                 home: "/terraform-0.14"
                 properties:
                   - installSource:
@@ -338,6 +340,34 @@ controller:
                     - maven:
                         id: "3.5.4"
                           
+          jdk:
+            installations:
+            - name: "jdk-11"
+              properties:
+              - installSource:
+                  installers:
+                    - maven:
+                        id: "3.5.4"
+
+          nodejs:
+            installations:
+            - name: "nodejs-6.9.4"
+              properties:
+              - installSource:
+                installers:
+                - nodeJSInstaller:
+                  id: "6.9.4"
+                  npmPackagesRefreshHours: 72
+
+          sonarRunnerInstallation:
+            installations:
+            - name: sonarqube
+              properties:
+              - installSource:
+                  installers:
+                  - sonarRunnerInstaller:
+                      id: "3.3.0.1492"                  
+
       jobs-configuration: |-
         jobs:
           - script: |
