@@ -365,7 +365,7 @@ controller:
               properties:
               - installSource:
                   installers:
-                    - jdkInstaller:
+                    - OpenJDKInstaller:
                         id: "java-11-openjdk"
 
       jobs-configuration: |-
