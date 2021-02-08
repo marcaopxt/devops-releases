@@ -16,7 +16,7 @@ resource "helm_release" "jenkins" {
     ###################### PLEASE FIX ASAP ##############################
     ###############################################################
     terraformAgentTag       = "0.0.1"
-    
+    dockerAgentTag          = "latest"
     chart_admin_username    = "admin"
     chart_admin_password    = "password"
     computer_jnlpmac        = "jenkins-agent"

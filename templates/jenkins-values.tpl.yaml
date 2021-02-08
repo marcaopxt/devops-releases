@@ -820,6 +820,27 @@ agent:
             resourceRequestMemory: "256Mi"
             resourceLimitCpu: "500m"
             resourceLimitMemory: "512Mi"
+    docker: |-
+      - name: docker
+        label: jenkins-docker
+        serviceAccount: "default"
+        idleMinutes: 15
+        nodeUsageMode: "NORMAL"
+        podRetention: Never
+        showRawYaml: true
+        slaveConnectTimeoutStr: "100"
+        yamlMergeStrategy: override
+        containers:
+          - name: jenkins-docker
+            image:  jenkins/jnlp-agent-docker:${dockerAgentTag}
+            command: "/bin/sh -c"
+            args: "cat"
+            ttyEnabled: true
+            privileged: false
+            resourceRequestCpu: "200m"
+            resourceRequestMemory: "256Mi"
+            resourceLimitCpu: "500m"
+            resourceLimitMemory: "512Mi"
   #  python: |
   #    - name: python
   #      label: jenkins-python
