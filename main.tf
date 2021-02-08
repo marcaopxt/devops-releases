@@ -11,7 +11,7 @@ resource "helm_release" "jenkins" {
   values        = [templatefile("templates/jenkins-values.tpl.yaml", {
     serviceType             = "LoadBalancer"
     prometheusEnabled       = "false"
-    mavenAgentTag           = "latest"
+    mavenAgentTag           = "0.0.1"
     #################################################################
     ###################### PLEASE FIX ASAP ##############################
     ###############################################################
