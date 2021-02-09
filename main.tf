@@ -11,6 +11,7 @@ resource "helm_release" "jenkins" {
   values        = [templatefile("templates/jenkins-values.tpl.yaml", {
     serviceType             = "LoadBalancer"
     prometheusEnabled       = "false"
+    mavenAgentTag           = "0.0.1"
     helmAgentTag            = "0.0.1"
     terraformAgentTag       = "0.0.1"
     dockerAgentTag          = "0.0.2"
