@@ -220,7 +220,7 @@ controller:
   # Enable to initialize the Jenkins controller only once on initial installation.
   # Without this, whenever the controller gets restarted (Evicted, etc.) it will fetch plugin updates which has the potential to cause breakage.
   # Note that for this to work, `persistence.enabled` needs to be set to `true`
-  initializeOnce: false
+  initializeOnce: true
 
   # Enable to always override the installed plugins with the values of 'controller.installPlugins' on upgrade or redeployment.
   # overwritePlugins: true
@@ -268,56 +268,7 @@ controller:
                       username: git
                       privateKeySource:
                         directEntry:
-                          privateKey: |-
-                            -----BEGIN OPENSSH PRIVATE KEY-----
-                            b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAACFwAAAAdzc2gtcn
-                            NhAAAAAwEAAQAAAgEA8CYKJzKRyPRxlSytlFSZYfdgLRdJAd7EeRZpRveGne9XdIxWxCvN
-                            22LSXzUfSF5JyD5gNP5c5eeA8wd7ZOBrvtwQ0DMlB7Ut/AGgsbpZRbm58xOXNo5LNB+Ll0
-                            Jk5HnG+46dwPmAHVJUhL3CQP6Eh3r7wlaj0PgJRAwZRdQxus6fqaMu1YvFgT0AZHz4Hpwp
-                            sYZ8RkyS8jNzUZRg2a2uGctyUFWk20VQ4f99MEOd3dspBQfbPM4AHtfL0OWKeET/+GchI7
-                            xJRTi6gzXLLrHTMbCTp9F0erO3U+i5DedmC50jlzC1vBu1pXGeYpTcFDqaEyCQtCmIlu7F
-                            LEikAH8GuHUx2JFxHGStG43XkBZp/p7/gPZBorrkwWCffzXjPnhnHAqmu1uNo/HwxM/vOP
-                            LiTRv0GU09n+U/+vCpZkO1s4ErpHf7WMuo0A8YkhnJvzf4VFCmKX8iQ/QC7S84bMdxj5ej
-                            WDMaQF9Bh1vzDS+1lXSFxmj83hkfiaSK/6qFGclwasXTfPmFzAYA0OE2cEVX4aD/Y6DMr5
-                            Cpkshyz5+JfoMLE9K811IQsll6mw+TEKd0GSjjvmQ90OaWmn5wYF7ZRqiNFXH1NXwLfzi6
-                            wRsqh658ADI9pwPORSvzuAbIDYSE94oXmoMTwhvM3agWHDuRaxeN2DlMwUVZ0Calx73Ti+
-                            sAAAdQwHux9MB7sfQAAAAHc3NoLXJzYQAAAgEA8CYKJzKRyPRxlSytlFSZYfdgLRdJAd7E
-                            eRZpRveGne9XdIxWxCvN22LSXzUfSF5JyD5gNP5c5eeA8wd7ZOBrvtwQ0DMlB7Ut/AGgsb
-                            pZRbm58xOXNo5LNB+Ll0Jk5HnG+46dwPmAHVJUhL3CQP6Eh3r7wlaj0PgJRAwZRdQxus6f
-                            qaMu1YvFgT0AZHz4HpwpsYZ8RkyS8jNzUZRg2a2uGctyUFWk20VQ4f99MEOd3dspBQfbPM
-                            4AHtfL0OWKeET/+GchI7xJRTi6gzXLLrHTMbCTp9F0erO3U+i5DedmC50jlzC1vBu1pXGe
-                            YpTcFDqaEyCQtCmIlu7FLEikAH8GuHUx2JFxHGStG43XkBZp/p7/gPZBorrkwWCffzXjPn
-                            hnHAqmu1uNo/HwxM/vOPLiTRv0GU09n+U/+vCpZkO1s4ErpHf7WMuo0A8YkhnJvzf4VFCm
-                            KX8iQ/QC7S84bMdxj5ejWDMaQF9Bh1vzDS+1lXSFxmj83hkfiaSK/6qFGclwasXTfPmFzA
-                            YA0OE2cEVX4aD/Y6DMr5Cpkshyz5+JfoMLE9K811IQsll6mw+TEKd0GSjjvmQ90OaWmn5w
-                            YF7ZRqiNFXH1NXwLfzi6wRsqh658ADI9pwPORSvzuAbIDYSE94oXmoMTwhvM3agWHDuRax
-                            eN2DlMwUVZ0Calx73Ti+sAAAADAQABAAACAQC5Rn/a0fcLtRvUXU3l/IcBwBrhbu+Sk829
-                            Jf8/E0U2oCs27fcbDjiaI9nuPkvOR4BhD06mVABUF5Gy7njS0RoPfDU0i+Dr22qI3LCfrg
-                            el9a5yzRCCtLFsm1HU9xJj+1f7SIKJGXUwKg6vAr/V6QdShx2pR7LHTDXJ3BO7fgSH/VXN
-                            SOqfMmDEXs3ouUmsRAsevYUvr3BHkE5OCE3YY1jI6d9d/1VbHlVSpwxsqh4nxigVi4Qnmz
-                            8YjKDgn9d/Bqz9doNo0KEu2J99D4mckvE/it3AQaa9691qzUfIZFikaS3GPXxYjoBMDiaG
-                            JBbPPI8WZq99b/XDjJ9ulPSCtX32Xx8+aPrj23EzdFpuDW+Cks+m+hf4f6htQfsDz1QaML
-                            WBtaBFFQtdybRKfH6sqOhV+Mhk1dLm/dQ2uWmSGV3YUM6iL9uw3kpnu4iHdH4F3m8bLdcE
-                            3utNDu5VZomJDX/8D6X6OpS2SqSisITEGZ9t1l/dwETZuFp+4tWYn4Xw50EcSA8NKrNSwu
-                            JXj6OJ4FQ86W2yYDkXJKEkIaNWDwg7KmRKy3SvOYofxOFTTVuU/SHzVjaIu/TOxf//Ia9R
-                            dbYMCtySGdbeNU6X5KwD30BYYnLeHs4iQbGGl/YYDrmMDyyCFrBC8GsOHgI48tSPaVaZP1
-                            SroqpbHBQmBUzcZrNtQQAAAQEA6qXq2Smfwth8puMYwku07S9B7hG39EfVIA0+p8/d8Zs7
-                            qUQIf1dxaENOLeMf8hLbaQgS5N1YtqLPHwTMhD0Q98LHrefYrB+wpU+8wrIkM5PdXoVOmE
-                            2CIqixo5rV0O6e2Ksntoohxazjv34AJT2KLoGhTI1QtCp2PpzymhjrPjRv4f0JcTTEnaKS
-                            wtdSiV8m9uVAtWlE/0CYYk0kqMTytpXe4uK/q84LTsGTw+16yGy24391WTu6cCm6Lk7Mnc
-                            +1rXWJGUNBkQXw4Aztd39iqZx2+7oyfkI48bckc90LbK5L/ZOEFmlRx1HvNPO4RAj7ZHCx
-                            EEl86G+GJLA5X6IxewAAAQEA/6tJam0Nzok4fkeR7nOZp7awpfr8Ba8UtsSWcbF9T1gch9
-                            M+qb5cCCMF4vq4AYceSc0TSycc+MwbpJvoHJNuPoBLXLKsDjzeEWlAlFwZ4PdIUSAe9Q3O
-                            AUSXWn2zjSX/96aZw9Y1ljaPLCJ2s5Y/bhilOchVK2t6OBGCmWWeXdd2q7STAz+2choyOu
-                            YsNMbZ+Y/u7MUV3K820Lvx+vEwWdf2jXe/qoZq8+s6joQumVBNrcWDQ7n3IYgTcZlCWhJI
-                            LTlJU9zG1+imQ+Bfv2GlBma1AD2PrpDrp8SFmquw1nA+DuM14ptwI4Nngbh4gsjW8kF34F
-                            xy6E9TgX9HI9mNuwAAAQEA8HWcPpKo5c7AaUfxZdXuCEZnnsoi/QUVm/NTFFVZujqjyt+/
-                            Dg6TUUr5rxFwPzDsALDFmCteAo/mEsmjxFKnsZjKuEfkMOTpm1aJhiEw/NsbJGHD/ZaiBr
-                            xUIBgEpGwjoY6AMkAzK/sn4BBRoo28AcJ2WuLywuOGiAFVgiNwdS1A+V2uDoibHFNIEibc
-                            xKj7bvVlV5xY2zxZBFgoOwSVZT2ULGmqK0Zi54tYiAfVXQ77sNu/bud1TcbMTgKX4c3SA1
-                            lnAWxeLNNM3UzNrADTAfJbA5nU4sY+e2bHi+OFEddafdsfXtUFzjNpd3BAD3lEeSdXC3kz
-                            /h80XgJvNPf/kQAAABhtcGVpeG90b0BERVNLVE9QLUFLMko5TkQB
-                            -----END OPENSSH PRIVATE KEY-----
+                          privateKey: $${GITHUB_SSH_PRIVATE_KEY}
                       description: "SSH key provided"
 
       tools: |-
@@ -411,11 +362,13 @@ controller:
                 'IaaC/devops-platform',
                 'SaaS/project-transactions-api',
                 'PaaS/jnpl-agents'
+                'PaaS/helm-chart-jenkins'
               ]
 
               jobGitRemoteBranch = [
                 '*/master',
                 '*/master',
+                '*/master'
                 '*/master'
               ]
 
@@ -423,6 +376,7 @@ controller:
                 'git@github.com:marcaopxt/devops-releases.git',
                 'git@github.com:marcaopxt/transactions-api.git',
                 'git@github.com:jenkinsci/jnlp-agents.git'
+                'git@github.com:marcaopxt/helm-charts.git'
               ]
 
               for(i = 0; i < jobArray.size(); i++)

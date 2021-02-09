@@ -1,9 +1,9 @@
 resource "helm_release" "jenkins" {
   name          = "jenkins"
   namespace     = "jenkins" 
-  chart         = "jenkins"
-  repository    = "https://charts.jenkins.io"
-  version       = "3.1.8"
+  chart         = "jenkins-mapx"
+  repository    = "https://raw.githubusercontent.com/marcaopxt/helm-charts/master/pkg/jenkins/"
+  version       = "3.1.8-rev1"
   reuse_values  = false
   recreate_pods = true
   force_update  = true
@@ -11,7 +11,6 @@ resource "helm_release" "jenkins" {
   values        = [templatefile("templates/jenkins-values.tpl.yaml", {
     serviceType             = "LoadBalancer"
     prometheusEnabled       = "false"
-    mavenAgentTag           = "0.0.1"
     helmAgentTag            = "0.0.1"
     terraformAgentTag       = "0.0.1"
     dockerAgentTag          = "0.0.2"
