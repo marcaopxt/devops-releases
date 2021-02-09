@@ -12,11 +12,9 @@ resource "helm_release" "jenkins" {
     serviceType             = "LoadBalancer"
     prometheusEnabled       = "false"
     mavenAgentTag           = "0.0.1"
-    #################################################################
-    ###################### PLEASE FIX ASAP ##############################
-    ###############################################################
+    helmAgentTag            = "0.0.1"
     terraformAgentTag       = "0.0.1"
-    dockerAgentTag          = "latest"
+    dockerAgentTag          = "0.0.2"
     chart_admin_username    = "admin"
     chart_admin_password    = "password"
     computer_jnlpmac        = "jenkins-agent"
