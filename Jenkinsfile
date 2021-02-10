@@ -22,8 +22,8 @@ pipeline {
     }
     stages {
         stage('Plan') {
-            container('jenkins-terraform') {
-                steps {
+            steps {
+                container('jenkins-terraform') {
     //                script {
     //                    currentBuild.displayName = params.version
                         sh 'terraform init -input=false  -no-color'
