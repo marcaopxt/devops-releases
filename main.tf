@@ -1,9 +1,9 @@
 resource "helm_release" "jenkins" {
   name          = "jenkins"
   namespace     = "jenkins" 
-  chart         = "jenkins-mapx"
-  repository    = "https://raw.githubusercontent.com/marcaopxt/helm-charts/master/pkg/jenkins/"
-  version       = "3.1.8-rev1"
+  chart         = "jenkins"
+  repository    = "https://raw.githubusercontent.com/marcaopxt/helm-charts/master/pkg/mapx"
+  version       = "3.1.8-rev4"
   reuse_values  = false
   recreate_pods = true
   force_update  = true
