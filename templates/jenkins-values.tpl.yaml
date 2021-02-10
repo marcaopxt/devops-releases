@@ -160,7 +160,7 @@ controller:
   # Note if you set this to 'LoadBalancer', you *must* define annotations to secure it. By default
   # this will be an external load balancer and allowing inbound 0.0.0.0/0, a HUGE
   # security risk:  https://github.com/kubernetes/charts/issues/1341
-  agentListenerServiceType: "LoadBalancer"
+  agentListenerServiceType: "ClusterIP"
   # Optionally assign an IP to the LoadBalancer agentListenerService LoadBalancer
   # GKE users: only regional static IPs will work for Service Load balancer.
   agentListenerLoadBalancerIP:
@@ -714,13 +714,13 @@ agent:
   # Allowed types are: DynamicPVC, EmptyDir, HostPath, Nfs, PVC
   # Configure the attributes as they appear in the corresponding Java class for that type
   # https://github.com/jenkinsci/kubernetes-plugin/tree/master/src/main/java/org/csanchez/jenkins/plugins/kubernetes/volumes/workspace
-  workspaceVolume: {}
+  workspaceVolume: 
   # - type: DynamicPVC
   #   configMapName: myconfigmap
   # - type: EmptyDir
   #   memory: false
-  # - type: HostPath
-  #   hostPath: /var/lib/containers
+    - type: HostPath
+      hostPath: /var/lib/docker/local-volumes/containers
   # - type: Nfs
   #   readOnly: false
   #   serverAddress: "192.0.2.0"
@@ -855,7 +855,7 @@ agent:
        slaveConnectTimeoutStr: "100"
        yamlMergeStrategy: override
        containers:
-         - name: jenkins-docker
+         - name: jenkins-helm
            image:  mapx/jnlp-agent-helm:${helmAgentTag}
            command: "/bin/sh -c"
            args: "cat"
@@ -926,7 +926,7 @@ persistence:
   ## A manually managed Persistent; Volume and Claim
   ## Requires persistence.enabled: true
   ## If defined, PVC must be created manually before volume will be bound
-  existingClaim: 
+  existingClaim: jenkins-home
   ## jenkins data Persistent Volume Storage Class
   ## If defined, storageClassName: <storageClass>
   ## If set to "-", storageClassName: "", which disables dynamic provisioning
@@ -934,13 +934,15 @@ persistence:
   ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
   ##   GKE, AWS & OpenStack)
   ##
-  storageClass: 
-  annotations: {}
+  storageClass: hostPath
+  annotations: 
+      "meta.helm.sh/release-name": "jenkins"
+      "meta.helm.sh/release-namespace": "jenkins"
   accessMode: "ReadWriteOnce"
-  size: "8Gi"
+  size: "12Gi"
   volumes:
   #  - name: nothing
-  #    emptyDir: {}
+  #    emptyDir: /var/
   mounts:
   #  - mountPath: /var/nothing
   #    name: nothing

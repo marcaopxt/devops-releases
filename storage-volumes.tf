@@ -1,7 +1,6 @@
-/*
-resource "kubernetes_persistent_volume" "jenkins_workspace" {
+resource "kubernetes_persistent_volume" "jenkins_home" {
   metadata {
-    name      = "jenkins-workspace"
+    name      = "jenkins-home"
     annotations = {
       "meta.helm.sh/release-name": "jenkins"
       "meta.helm.sh/release-namespace": "jenkins"
@@ -17,7 +16,7 @@ resource "kubernetes_persistent_volume" "jenkins_workspace" {
     access_modes = ["ReadWriteOnce"]
     persistent_volume_source {
       local {
-        path = "/var/lib/jenkins-workspace"
+        path = "/var/lib/docker/local-volumes/jenkins-home"
       }
     }    
     storage_class_name = "hostpath"
@@ -35,9 +34,9 @@ resource "kubernetes_persistent_volume" "jenkins_workspace" {
   }
 }
 
-resource "kubernetes_persistent_volume_claim" "jenkins_workspace" {
+resource "kubernetes_persistent_volume_claim" "jenkins_home" {
   metadata {
-    name      = "jenkins-workspace"
+    name      = "jenkins-home"
     namespace = "jenkins"
     annotations = {
       "meta.helm.sh/release-name": "jenkins"
@@ -54,8 +53,7 @@ resource "kubernetes_persistent_volume_claim" "jenkins_workspace" {
         storage = "8Gi"
       }
     }
-    volume_name = kubernetes_persistent_volume.jenkins_workspace.metadata[0].name
+    volume_name = kubernetes_persistent_volume.jenkins_home.metadata[0].name
     storage_class_name = "hostpath"
   }
 }
-*/
