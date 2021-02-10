@@ -10,7 +10,7 @@ variable "GITHUB_SSH_PRIVATE_KEY" {
     default     = "~/.ssh/id_rsa"
 }
 
-variable "JENKINS_TOKEN" {
+variable "SONARQUBE_TOKEN" {
     type        = string
     description = "Get this token in SonarQube"
     default     = "sonarqubetoken"

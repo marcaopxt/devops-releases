@@ -1,3 +1,8 @@
+######################################################################################################### 
+####
+#### PROVIDERS
+####
+#########################################################################################################
 provider "kubernetes" {
 #  config_path    = "/var/lib/docker/local-volumes/tokens/.kube/config"
   config_path    = "~/.kube/config"
@@ -9,30 +14,31 @@ provider "kubernetes" {
   token                  = file("~/.kube/token")
   host = "https://localhost:6443"
 }
-
 provider "helm" {
   kubernetes {
     #config_path = "/var/lib/docker/local-volumes/tokens/.kube/config"
     config_path = "~/.kube/config"
     #    cluster_ca_certificate = base64decode(local.gke_ca_certificate)
-    token                  = data.google_client_config.default.access_token    
+    #token                  = data.google_client_config.default.access_token    
   }
 }
-
 provider "google" {
     project     = "mapx-devtools"
     region      = "us-east1"
 }
-
 provider "google-beta" {
     project     = "mapx-devtools"
     region      = "us-east1"
 }
 
+######################################################################################################### 
+####
+#### STATE CONFIG
+####
+#########################################################################################################
 terraform {
   backend "gcs" {
     bucket  = "mapx-devtools-microservices-tf-state-prod"
-    path    = "terraform"
     prefix  = "state"
   }  
   required_providers {
@@ -56,6 +62,11 @@ terraform {
   }
 }
 
+######################################################################################################### 
+####
+#### DATA CONFIG
+####
+#########################################################################################################
 data "google_client_config" "default" {}
 
 data "terraform_remote_state" "microservices-" {
