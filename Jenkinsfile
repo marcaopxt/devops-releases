@@ -53,11 +53,10 @@ pipeline {
         }
 
         stage('Apply') {
-            container('jenkins-terraform') {
-                steps {
+            steps {
+                container('jenkins-terraform') {
                     sh "terraform apply --dry-run -input=false"
                     // tfplan"
-
                 }
             }
         }
