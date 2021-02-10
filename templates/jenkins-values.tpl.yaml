@@ -361,21 +361,21 @@ controller:
               jobArray = [
                 'IaaC/devops-platform',
                 'SaaS/project-transactions-api',
-                'PaaS/jnpl-agents'
+                'PaaS/jnpl-agents',
                 'PaaS/helm-chart-jenkins'
               ]
 
               jobGitRemoteBranch = [
                 '*/master',
                 '*/master',
-                '*/master'
+                '*/master',
                 '*/master'
               ]
 
               jobGitRemoteArray = [
                 'git@github.com:marcaopxt/devops-releases.git',
                 'git@github.com:marcaopxt/transactions-api.git',
-                'git@github.com:jenkinsci/jnlp-agents.git'
+                'git@github.com:jenkinsci/jnlp-agents.git',
                 'git@github.com:marcaopxt/helm-charts.git'
               ]
 
