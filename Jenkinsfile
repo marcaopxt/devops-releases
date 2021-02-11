@@ -30,8 +30,7 @@ pipeline {
                         sh 'ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts'
                         sh 'terraform init -input=false  -no-color'
     //                    sh 'terraform workspace select ${environment}'
-                        sh "terraform plan -input=false  -no-color"
-                        //-out tfplan -var 'version=${params.version}' --var-file=environments/${params.environment}.tfvars"
+                        sh "terraform plan -input=false  -no-color -out tfplan -var 'version=${params.version}' --var-file=environments/${params.environment}.tfvars"
                         sh 'terraform show -no-color'
                         // tfplan > tfplan.txt'
     //                }
