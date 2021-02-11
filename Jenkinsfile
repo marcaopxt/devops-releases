@@ -12,9 +12,9 @@ pipeline {
 //        timestamps()
 //        ansiColor("xterm")
 //    }
-//    tools {
-//        terraform 'terraform-default'
-//    }
+    tools {
+        terraform 'terraform-default'
+    }
     parameters {
 //        string(name: 'environment', defaultValue: 'default', description: 'Workspace/environment file to use for deployment')
 //        string(name: 'version', defaultValue: '0.14.5', description: 'Version variable to pass to Terraform')

@@ -15,3 +15,4 @@ variable "SONARQUBE_TOKEN" {
     description = "Get this token in SonarQube"
     default     = "sonarqubetoken"
 }
+
