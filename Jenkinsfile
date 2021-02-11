@@ -26,9 +26,6 @@ pipeline {
                 container('jenkins-terraform') {
     //                script {
     //                    currentBuild.displayName = params.version
-                        sh 'cat /etc/os-release'
-                        sh 'whoami'
-                        sh 'pwd'
                         sh 'mkdir -p ~/.ssh'
                         sh 'ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts'
                         sh 'terraform init -input=false  -no-color'
@@ -49,19 +46,19 @@ pipeline {
             }
 
             steps {
-                script {
-//                    def plan = readFile 'tfplan.txt'
-                    input message: "Do you want to apply the plan?",
-                        parameters: [text(name: 'Plan', description: 'Please review the plan', defaultValue: plan)]
+                container('jenkins-terraform') {                
+                    script {
+                        def plan = readFile 'tfplan.txt'
+                        input message: "Do you want to apply the plan?",
+                            parameters: [text(name: 'Plan', description: 'Please review the plan', defaultValue: plan)]
+                    }
                 }
             }
         }
-
         stage('Apply') {
             steps {
                 container('jenkins-terraform') {
                     sh "terraform apply --dry-run -input=false"
-                    // tfplan"
                 }
             }
         }
