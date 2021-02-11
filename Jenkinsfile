@@ -26,6 +26,7 @@ pipeline {
                 container('jenkins-terraform') {
     //                script {
     //                    currentBuild.displayName = params.version
+                        sh 'ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts'
                         sh 'terraform init -input=false  -no-color'
     //                    sh 'terraform workspace select ${environment}'
                         sh "terraform plan -input=false  -no-color"
