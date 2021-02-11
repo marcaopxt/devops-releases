@@ -26,6 +26,10 @@ pipeline {
                 container('jenkins-terraform') {
     //                script {
     //                    currentBuild.displayName = params.version
+                        sh 'cat /etc/os-release'
+                        sh 'whoami'
+                        sh 'pwd'
+                        sh 'mkdir -p ~/.ssh'
                         sh 'ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts'
                         sh 'terraform init -input=false  -no-color'
     //                    sh 'terraform workspace select ${environment}'

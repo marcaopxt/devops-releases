@@ -29,22 +29,21 @@ terraform {
   }
 }
 
-
 module "global" {
     source = "../global"
     project_id   = "mapx-devtols"
     region       = "us-east1"
 }
 
-
 module "datastore" {
-    #source = "git::git@github.com:marcaopxt/terraform-modules//microservices-cluster/database-tools?ref=0.0.2"
-    source = "../../terraform-modules/datastore"
+    source = "git::git@github.com:marcaopxt/terraform-modules.git//datastore?ref=v0.0.3"
+    #source  = "https://storage.googleapis.com/mapx-devtools-terraform-modules/datastore/datastore.zip"
+    #source = "../../terraform-modules/datastore"
 }
 
 module "devops" {
-    #source = "git@github.com:marcaopxt/terraform-modules//microservices-cluster/devops-tools?ref=0.0.2"
-    source = "../../terraform-modules/devops"
+    source = "git::git@github.com:marcaopxt/terraform-modules.git//devops?ref=v0.0.3"
+    #source = "../../terraform-modules/devops"
 
     jenkins_release_config = {
             serviceType             = "LoadBalancer"
