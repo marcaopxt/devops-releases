@@ -59,7 +59,7 @@ pipeline {
         stage('Apply') {
             steps {
                 container('jenkins-terraform') {
-                    sh "terraform apply --dry-run -input=false"
+                    sh "terraform apply --dry-run -auto-approve"
                 }
             }
         }
