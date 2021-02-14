@@ -36,13 +36,13 @@ module "global" {
 }
 
 module "datastore" {
-    source = "git::git@github.com:marcaopxt/terraform-modules.git//datastore?ref=v0.0.3"
+    source = "git::git@github.com:marcaopxt/terraform-modules.git//datastore?ref=v0.2.0"
     #source  = "https://storage.googleapis.com/mapx-devtools-terraform-modules/datastore/datastore.zip"
     #source = "../../terraform-modules/datastore"
 }
 
 module "devops" {
-    source = "git::git@github.com:marcaopxt/terraform-modules.git//devops?ref=v0.0.3"
+    source = "git::git@github.com:marcaopxt/terraform-modules.git//devops?ref=v0.2.0"
     #source = "../../terraform-modules/devops"
 
     jenkins_release_config = {
@@ -60,6 +60,11 @@ module "devops" {
     }
 }
 
+module "bigdata" {
+    source = "git::git@github.com:marcaopxt/terraform-modules.git//bigdata?ref=v0.2.0"
+    #source  = "https://storage.googleapis.com/mapx-devtools-terraform-modules/datastore/datastore.zip"
+    #source = "../../terraform-modules/bigdata"
+}
 #########################################################################################################
 
 ######################################################################################################### 
