@@ -36,9 +36,19 @@ module "global" {
 }
 
 module "datastore" {
-    source = "git::git@github.com:marcaopxt/terraform-modules.git//datastore?ref=v0.2.0"
-    #source  = "https://storage.googleapis.com/mapx-devtools-terraform-modules/datastore/datastore.zip"
+    source = "git::git@github.com:marcaopxt/terraform-modules.git//datastore?ref=v0.3.0"
     #source = "../../terraform-modules/datastore"
+
+  postgresql_release_config = { 
+      postgres_username       = "postgres"
+      postgres_password       = "password"      
+  }
+
+  cassandra_release_config = {
+      cassandra_enabled = false
+      serviceType   = "LoadBalancer"
+  }
+
 }
 
 module "devops" {
@@ -56,7 +66,7 @@ module "devops" {
             chart_admin_password    = "password"
             computer_jnlpmac        = "jenkins-agent"
             computer_name           = "jenkins-agent"
-            agent_idle_minutes      = "15"
+            agent_idle_minutes      = "15" 
     }
 }
 
