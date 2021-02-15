@@ -1,21 +1,39 @@
 {
-    "branches": ["master",{ "name": "production", "prerelease": true }],
-    "plugins": [
-      "@semantic-release/commit-analyzer",
-      "@semantic-release/release-notes-generator",
-      "@semantic-release/changelog",
-    [
-      "@semantic-release/npm",
-      {
-        "npmPublish": false
-     }
+    "tagFormat": "v${version}",
+    "debug": true,
+    "branches": [
+        "master",
+        {"name": "next", "channel": "channel-${name}" }
+        {"name": "rc", "channel": "rc", "prerelease": "rc"}, // `prerelease` is built with the template `${name.replace(/^pre\\//g, "")}`
+        {"name": "beta", "channel": "beta", "prerelease": "beta"},         
     ],
-    ["@semantic-release/git", {
-      "assets": ["/", "package.json","CHANGELOG.md"],
-      "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
-    }],
-    "@semantic-release/github"
+    "plugins": 
+    [   "@semantic-release/commit-analyzer",
+        "@semantic-release/release-notes-generator",
+        "@semantic-release/changelog",
+        ["@semantic-release/npm", {
+            "npmPublish": false,
+            "tarballDir": "dist",
+            "pkgRoot": "./build/"
+        }],
+        ["@semantic-release/git", {
+            "assets": ["/", "package.json","CHANGELOG.md"],
+            "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+        }],
+        "@semantic-release/github"
     ],
-  "repositoryUrl": "https://github.com/marcaopxt/devops-releases.git"
-
+    "repositoryUrl": "https://github.com/marcaopxt/devops-releases.git",
+    "release": {
+        "publish": [
+            {
+                "path": "@semantic-release/exec",
+                "cmd": "echo ${nextRelease.version}.min.js"
+            },
+            {
+                "path": "@semantic-release/github"
+            }
+        ]
+    }
 }
+
+

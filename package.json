@@ -1,6 +1,9 @@
 {
-  "devDependencies": {
-    "@semantic-release/github": "^7.2.0",
-    "semantic-release": "^17.3.8"
-  }
+    "name": "terraform-repo",
+    "private": "false",
+    "devDependencies": {
+        "@semantic-release/github": "^7.2.0"
+    },
+    "repository": "github:marcaopxt/devops-releases",
+    "version": "0.1.1"
 }
