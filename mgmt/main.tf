@@ -1,5 +1,91 @@
 ######################################################################################################### 
 ####
+#### MODULES CONFIG
+####
+#########################################################################################################
+
+module "global" {
+    source = "../global"
+    project_id   = "mapx-devtols"
+    region       = "us-east1"
+}
+
+module "datastore" {
+    source = "git::git@github.com:marcaopxt/terraform-modules.git//datastore?ref=v0.5.0"
+    #source = "../../terraform-modules/datastore"
+
+    redis_enabled        = true
+    redis_release_config = { 
+        redis_host = "postgresql.postgresql.svc.cluster.local"
+        redisPassword       = "password"      
+    }
+
+    postgresql_enabled        = true
+    postgresql_release_config = { 
+        postgres_username       = "postgres"
+        postgres_password       = "password"      
+    }
+    pgadmin_enabled        = true
+    pgadmin_release_config = {
+        postgres_host = "postgresql.postgresql.svc.cluster.local"
+    }
+
+    cassandra_enabled        = false
+    cassandra_release_config = {
+        cassandra_enabled = false
+        serviceType   = "LoadBalancer"
+    }
+
+    mongodb_enabled        = false
+    mongodb_release_config = { 
+        mongodb_host = "mongodb.mongodb.svc.cluster.local"      
+        rootPassword = "password"
+    }
+}
+
+module "devops" {
+    source = "git::git@github.com:marcaopxt/terraform-modules.git//devops?ref=v0.5.2"
+    #source = "../../terraform-modules/devops"
+
+    jenkins_release_config = {
+            serviceType             = "LoadBalancer"
+            prometheusEnabled       = "false"
+            mavenAgentTag           = "0.0.1"
+            helmAgentTag            = "0.0.1"
+            terraformAgentTag       = "0.0.1"
+            dockerAgentTag          = "0.0.2"
+            chart_admin_username    = "admin"
+            chart_admin_password    = "password"
+            computer_jnlpmac        = "jenkins-agent"
+            computer_name           = "jenkins-agent"
+            agent_idle_minutes      = "15" 
+    }
+}
+
+module "bigdata" {
+    source = "git::git@github.com:marcaopxt/terraform-modules.git//bigdata?ref=v0.5.1"
+    #source = "../../terraform-modules/bigdata"
+
+    kafka_enabled        = true
+    kafka_release_config = {
+      
+    }
+
+    kafdrop_enabled        = true
+    kafdrop_release_config = {
+        tagVersion  = "3.27.0"
+        kafkaServer = "kafka.kafka.svc.cluster.local:9092"
+    }
+
+    spark_enabled        = true
+    spark_release_config = {
+      
+    }
+
+}
+
+######################################################################################################### 
+####
 #### STATE CONFIG
 ####
 #########################################################################################################
@@ -29,58 +115,12 @@ terraform {
   }
 }
 
-module "global" {
-    source = "../global"
-    project_id   = "mapx-devtols"
-    region       = "us-east1"
-}
-
-module "datastore" {
-    source = "git::git@github.com:marcaopxt/terraform-modules.git//datastore?ref=v0.3.0"
-    #source = "../../terraform-modules/datastore"
-
-  postgresql_release_config = { 
-      postgres_username       = "postgres"
-      postgres_password       = "password"      
-  }
-
-  cassandra_release_config = {
-      cassandra_enabled = false
-      serviceType   = "LoadBalancer"
-  }
-
-}
-
-module "devops" {
-    source = "git::git@github.com:marcaopxt/terraform-modules.git//devops?ref=v0.2.0"
-    #source = "../../terraform-modules/devops"
-
-    jenkins_release_config = {
-            serviceType             = "LoadBalancer"
-            prometheusEnabled       = "false"
-            mavenAgentTag           = "0.0.1"
-            helmAgentTag            = "0.0.1"
-            terraformAgentTag       = "0.0.1"
-            dockerAgentTag          = "0.0.2"
-            chart_admin_username    = "admin"
-            chart_admin_password    = "password"
-            computer_jnlpmac        = "jenkins-agent"
-            computer_name           = "jenkins-agent"
-            agent_idle_minutes      = "15" 
-    }
-}
-
-module "bigdata" {
-    source = "git::git@github.com:marcaopxt/terraform-modules.git//bigdata?ref=v0.2.0"
-    #source  = "https://storage.googleapis.com/mapx-devtools-terraform-modules/datastore/datastore.zip"
-    #source = "../../terraform-modules/bigdata"
-}
-#########################################################################################################
 
 ######################################################################################################### 
 ####
 #### PROVIDERS
 ####
+#########################################################################################################
 
 provider "kubernetes" {
 #  config_path    = "/var/lib/docker/local-volumes/tokens/.kube/config"
