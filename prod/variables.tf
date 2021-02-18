@@ -1,9 +1,9 @@
 variable "project_id" {
   type        = string
-  description = "Project ID"
+  default = "mapx-devtools"
 }
 
 variable "region" {
   type        = string
-  description = "Cloud Region"
+  default = "us-east1"
 }
