@@ -60,6 +60,11 @@ module "devops" {
             computer_name           = "jenkins-agent"
             agent_idle_minutes      = "15" 
     }
+
+    sonarqube_release_config = {
+
+    }
+
 }
 
 module "bigdata" {
