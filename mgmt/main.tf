@@ -36,7 +36,7 @@ module "datastore" {
         serviceType   = "LoadBalancer"
     }
 
-    mongodb_enabled        = false
+    mongodb_enabled        = true
     mongodb_release_config = { 
         mongodb_host = "mongodb.mongodb.svc.cluster.local"      
         rootPassword = "password"
@@ -44,7 +44,7 @@ module "datastore" {
 }
 
 module "devops" {
-    source = "git::git@github.com:marcaopxt/terraform-modules.git//devops?ref=v0.5.2"
+    source = "git::git@github.com:marcaopxt/terraform-modules.git//devops?ref=v0.6.3"
     #source = "../../terraform-modules/devops"
 
     jenkins_release_config = {
@@ -53,7 +53,8 @@ module "devops" {
             mavenAgentTag           = "0.0.1"
             helmAgentTag            = "0.0.1"
             terraformAgentTag       = "0.0.1"
-            dockerAgentTag          = "0.0.2"
+            dockerAgentTag          = "0.0.5"
+            dindAgentTag            = "jdk11"
             chart_admin_username    = "admin"
             chart_admin_password    = "password"
             computer_jnlpmac        = "jenkins-agent"
@@ -62,7 +63,7 @@ module "devops" {
     }
 
     sonarqube_release_config = {
-
+      sonarqube_token = var.SONARQUBE_TOKEN
     }
 
 }

@@ -7,3 +7,12 @@ variable "region" {
     default = "us-east1"
 
 }
+variable "SONARQUBE_TOKEN" {
+    type = string
+    default = ""
+}
+
+variable "DOCKER_HUB_REGISTRY_TOKEN" {
+    type = string
+    default = ""
+}
