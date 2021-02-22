@@ -11,7 +11,7 @@ module "global" {
 }
 
 module "datastore" {
-    source = "git::git@github.com:marcaopxt/terraform-modules.git//datastore?ref=v0.5.0"
+    source = "git::git@github.com:marcaopxt/terraform-modules.git//datastore?ref=v0.6.4"
     #source = "../../terraform-modules/datastore"
 
     redis_enabled        = true
@@ -44,7 +44,7 @@ module "datastore" {
 }
 
 module "devops" {
-    source = "git::git@github.com:marcaopxt/terraform-modules.git//devops?ref=v0.6.3"
+    source = "git::git@github.com:marcaopxt/terraform-modules.git//devops?ref=v0.6.4"
     #source = "../../terraform-modules/devops"
 
     jenkins_release_config = {
