@@ -44,8 +44,8 @@ module "datastore" {
 }
 
 module "devops" {
-    #source = "git::git@github.com:marcaopxt/terraform-modules.git//devops?ref=v0.6.4"
-    source = "../../terraform-modules/devops"
+    source = "git::git@github.com:marcaopxt/terraform-modules.git//devops?ref=v0.6.5"
+    #source = "../../terraform-modules/devops"
 
     jenkins_release_config = {
             serviceType             = "LoadBalancer"
