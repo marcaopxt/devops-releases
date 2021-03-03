@@ -44,8 +44,8 @@ module "datastore" {
 }
 
 module "devops" {
-    source = "git::git@github.com:marcaopxt/terraform-modules.git//devops?ref=v0.6.5"
-    #source = "../../terraform-modules/devops"
+    #source = "git::git@github.com:marcaopxt/terraform-modules.git//devops?ref=v0.6.5"
+    source = "../../terraform-modules/devops"
 
     jenkins_release_config = {
             serviceType             = "LoadBalancer"
@@ -59,7 +59,7 @@ module "devops" {
             chart_admin_password    = "password"
             computer_jnlpmac        = "jenkins-agent"
             computer_name           = "jenkins-agent"
-            agent_idle_minutes      = "15" 
+            agent_idle_minutes      = "15"
     }
 
     sonarqube_release_config = {
@@ -87,7 +87,15 @@ module "bigdata" {
     spark_release_config = {
       
     }
+}
 
+module "identity" {
+    #source = "git::git@github.com:marcaopxt/terraform-modules.git//devops?ref=v0.6.4"
+    source = "../../terraform-modules/identity"
+
+    keycloak_release_config = {
+      
+    }
 }
 
 ######################################################################################################### 
