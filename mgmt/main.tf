@@ -69,8 +69,8 @@ module "devops" {
 }
 
 module "bigdata" {
-    source = "git::git@github.com:marcaopxt/terraform-modules.git//bigdata?ref=v0.7.0"
-    #source = "../../terraform-modules/bigdata"
+    #source = "git::git@github.com:marcaopxt/terraform-modules.git//bigdata?ref=v0.7.0"
+    source = "../../terraform-modules/bigdata"
 
     kafka_enabled        = true
     kafka_release_config = {
@@ -90,7 +90,7 @@ module "bigdata" {
 }
 
 module "identity" {
-    source = "git::git@github.com:marcaopxt/terraform-modules.git//devops?ref=v0.7.0"
+    source = "git::git@github.com:marcaopxt/terraform-modules.git//identity?ref=v0.7.0"
     #source = "../../terraform-modules/identity"
 
     keycloak_release_config = {
