@@ -5,5 +5,5 @@
         "@semantic-release/github": "^7.2.0"
     },
     "repository": "github:marcaopxt/devops-releases",
-    "version": "0.2.0"
+    "version": "0.3.0"
 }
