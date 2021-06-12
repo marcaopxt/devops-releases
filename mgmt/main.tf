@@ -81,8 +81,8 @@ module "gcp" {
 }
 
 module "azure" {
-    #source = "git::git@github.com:marcaopxt/terraform-modules.git//azure?ref=v0.9.0"
-    source = "../../terraform-modules/azure"
+    source = "git::git@github.com:marcaopxt/terraform-modules.git//azure?ref=v0.9.1"
+    #source = "../../terraform-modules/azure"
 
     azure_enabled       = true
     aks_enabled         = false
@@ -127,11 +127,12 @@ module "datastore" {
 }
 
 module "devops" {
-    source = "git::git@github.com:marcaopxt/terraform-modules.git//devops?ref=v0.7.0"
+    source = "git::git@github.com:marcaopxt/terraform-modules.git//devops?ref=v0.9.2"
     #source = "../../terraform-modules/devops"
 
     jenkins_release_config = {
             serviceType             = "LoadBalancer"
+            servicePort             = "8089"
             prometheusEnabled       = "false"
             mavenAgentTag           = "0.0.1"
             helmAgentTag            = "0.0.1"
