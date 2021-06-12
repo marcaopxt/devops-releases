@@ -81,10 +81,10 @@ module "gcp" {
 }
 
 module "azure" {
-    source = "git::git@github.com:marcaopxt/terraform-modules.git//azure?ref=v0.9.0"
-    #source = "../../terraform-modules/azure"
+    #source = "git::git@github.com:marcaopxt/terraform-modules.git//azure?ref=v0.9.0"
+    source = "../../terraform-modules/azure"
 
-    azure_enabled       = false
+    azure_enabled       = true
     aks_enabled         = false
 
     project_id          = "mapx-devtools"
