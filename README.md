@@ -12,3 +12,18 @@ Create a webhook in Sonarqube in Administration/Configuration/Webhooks pointing 
 Create a Docker registry secret, check this file: 
 create-docker-registry-secret.sh
 
+Go to one of the environments folder and run:
+
+terraform plan
+
+Examine the plan to check what resources will be created in apply
+
+If the things are OK, then you can apply it:
+
+terraform apply
+
+Or if you feel comfortable to dismiss the approval question, 
+
+terraform apply -auto-approve
+
+Finally, check the resources created
